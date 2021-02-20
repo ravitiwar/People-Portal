@@ -58,14 +58,15 @@ class EmployeeController extends Controller
     public function update(EmployeeRequest $employeeRequest, $id)
     {
         try {
-            User::findOrFail($id)->update($employeeRequest->only([
+            User::findOrFail($id)->update(array_merge($employeeRequest->only([
                 'name',
                 'email',
-                'emp_id',
                 'position',
                 'team',
-                'role_id',
                 'phone'
+            ]), [
+                'role_id' => $employeeRequest->get('roleId'),
+                'emp_id' => $employeeRequest->get('empId')
             ]));
             return response()->success([], "Employee Updated");
         } catch (\Exception $e) {

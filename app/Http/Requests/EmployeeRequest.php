@@ -31,10 +31,10 @@ class EmployeeRequest extends ApiRequest
             'name' => 'required|string',
             'email' => 'required|unique:users,email,'.$this->id,
             'password' => 'confirmed',
-            'emp_id' => 'required|string',
+            'empId' => 'required|string',
             'position' => 'required|string',
             'team' => 'required|string',
-            'role_id' => 'required|exists:roles,id',
+            'roleId' => 'required|exists:roles,id',
             'phone' => 'required|string'
         ] ;
     }
@@ -44,10 +44,10 @@ class EmployeeRequest extends ApiRequest
             'name' => 'required|string',
             'email' => 'required|unique:users,email',
             'password' => 'required|confirmed',
-            'emp_id' => 'required|string',
+            'empId' => 'required|string',
             'position' => 'required|string',
             'team' => 'required|string',
-            'role_id' => 'required|exists:roles,id',
+            'roleId' => 'required|exists:roles,id',
             'phone' => 'required|string'
         ] ;
     }
