@@ -25,11 +25,11 @@ class ConferenceRoomRequest extends ApiRequest
     public function rules()
     {
         return [
-            'room_id'=>'required|string',
+            'roomId'=>'required|string',
             'name'=>'required|string',
-            'booking_email'=>'required|email',
+            'bookingEmail'=>'required|email',
             'sitting'=>'required|int',
-            'current_status'=>'required|in:'.join(',',AppUtils::getRoomStatuses())
+            'currentStatus'=>'required|in:'.join(',',AppUtils::getRoomStatuses())
         ];
     }
 

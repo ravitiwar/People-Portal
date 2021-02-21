@@ -20,6 +20,6 @@ use Illuminate\Support\Str;
 $factory->define(Role::class, function (Faker $faker) {
     return [
         'title' => $faker->name,
-        'capabilities'=>json_encode(array_chunk(\App\Utils\AppUtils::getCapabilies(),rand(3,8)))
+        'capabilities'=>json_encode(\App\Utils\AppUtils::getCapabilies())
     ];
 });

@@ -17,12 +17,17 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', 'Api\LoginController@login');
 Route::post('/refresh-token', 'Api\LoginController@refreshToken');
 Route::get('/capabilities', function () {
-    return response()->success(AppUtils::getCapabilies());
+    return response()->success(array_unique(AppUtils::getCapabilies()));
 });
 Route::middleware('auth:api')->group(function () {
     foreach (AppUtils::getMapingForendpoints() as $mapingForendpoint) {
         Route::{$mapingForendpoint['method']}($mapingForendpoint['endpoint'], $mapingForendpoint['controller_path'])
             ->middleware("can:{$mapingForendpoint['capability']}");
     }
-});
 
+    Route::get('/user', function () {
+        $user = \Auth::user();
+        $user['role'] = $user->role;
+        return response()->success($user);
+    });
+});

@@ -30,7 +30,6 @@ class AuthServiceProvider extends ServiceProvider
         $user = Auth::user();
         foreach (AppUtils::getMapingForendpoints() as $mapingForendpoint) {
             Gate::define("{$mapingForendpoint['capability']}", function ($user) use ( $mapingForendpoint) {
-                \Log::debug((array)$user);
                 return in_array($mapingForendpoint['capability'], $user->role->capabilities);
             });
         }

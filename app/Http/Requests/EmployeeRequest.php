@@ -43,7 +43,6 @@ class EmployeeRequest extends ApiRequest
         return[
             'name' => 'required|string',
             'email' => 'required|unique:users,email',
-            'password' => 'required|confirmed',
             'empId' => 'required|string',
             'position' => 'required|string',
             'team' => 'required|string',

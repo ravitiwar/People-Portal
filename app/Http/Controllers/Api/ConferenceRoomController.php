@@ -31,8 +31,14 @@ class ConferenceRoomController extends Controller
     public function store(ConferenceRoomRequest $conferenceRoomRequest)
     {
         return response()->success(
-            $this->conferenceRoomModel->create(
-                $conferenceRoomRequest->only($this->conferenceRoomModel->getFillable())
+            $this->conferenceRoomModel->create(array_merge($conferenceRoomRequest->only([
+                    'name',
+                    'sitting'
+                ]), [
+                    'room_id' => $conferenceRoomRequest->get('roomId'),
+                    'current_status' => $conferenceRoomRequest->get('currentStatus'),
+                    'booking_email' => $conferenceRoomRequest->get('bookingEmail'),
+                ])
             ),
             "Conference room updated"
         );
@@ -69,10 +75,10 @@ class ConferenceRoomController extends Controller
     {
         try {
             return response()->success(
-                $this->findOrFail($id)->destroy($id)
+                $this->conferenceRoomModel->findOrFail($id)->destroy($id)
             );
         } catch (\Exception $e) {
-            $this->failReponse([], "Conference room not found");
+            return response()->fail([$id], "Conference room not found");
         }
     }
 }

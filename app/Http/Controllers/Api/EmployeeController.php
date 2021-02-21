@@ -35,17 +35,17 @@ class EmployeeController extends Controller
      */
     public function store(EmployeeRequest $employeeRequest)
     {
-        return User::create(array_merge($employeeRequest->only([
+        return response()->success(User::create(array_merge($employeeRequest->only([
             'name',
             'email',
-            'emp_id',
             'position',
             'team',
-            'role_id',
             'phone'
         ]), [
-            'password' => Hash::make($employeeRequest->get('password')),
-        ]));
+            'password' => Hash::make('password'),
+            'emp_id' => $employeeRequest->get('empId'),
+            'role_id' => $employeeRequest->get('roleId')
+        ])));
     }
 
     /**

@@ -8,7 +8,7 @@ class AppUtils
 {
     public static function getCapabilies()
     {
-        return array_column(self::getMapingForendpoints(),'capability');
+        return array_unique(array_column(self::getMapingForendpoints(),'capability'));
     }
 
     public static function getMapingForendpoints()
@@ -70,12 +70,12 @@ class AppUtils
                 'endpoint' => '/role',
                 'method' => 'get',
                 'controller_path' => 'Api\RoleController@index',
-                'capability' => 'conf_room_read',
+                'capability' => 'employee_edit',
             ],
             [
                 'endpoint' => '/role',
                 'controller_path' => 'Api\RoleController@store',
-                'capability' => 'conf_room_create',
+                'capability' => 'employee_edit',
                 'method' => 'post',
             ],
 
@@ -83,7 +83,7 @@ class AppUtils
                 'endpoint' => '/role/{id}',
                 'method' => 'put',
                 'controller_path' => 'Api\RoleController@update',
-                'capability' => 'conf_room_edit',
+                'capability' => 'employee_edit',
             ],
 
             [
