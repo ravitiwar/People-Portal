@@ -56,7 +56,14 @@ class ConferenceRoomController extends Controller
         try {
             return response()->success(
                 $this->conferenceRoomModel->findOrFail($id)->update(
-                    $this->conferenceRoomModel->getFillable()
+                    array_merge($conferenceRoomRequest->only([
+                        'name',
+                        'sitting'
+                    ]), [
+                        'room_id' => $conferenceRoomRequest->get('roomId'),
+                        'current_status' => $conferenceRoomRequest->get('currentStatus'),
+                        'booking_email' => $conferenceRoomRequest->get('bookingEmail'),
+                    ])
                 )
             );
 
