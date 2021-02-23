@@ -2,7 +2,7 @@
 
 ## Installation
 
-Clone the repository and run the below command
+Clone the repository, Open terminal and run the below command
 
 ```bash
 cd {path_to_the_project}
